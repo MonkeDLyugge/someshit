@@ -5,6 +5,11 @@
 </head>
 <body>
     <div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign out"/>
+        </form>
+    </div>
+    <div>
         <form method="post">
             <input type="text" name="text" placeholder="Введите сообщения">
             <input type="text" name="tag" placeholder="Тэг">
