@@ -1,9 +1,11 @@
 package com.lyugge.pieceofshit.controller;
 
 import com.lyugge.pieceofshit.domain.Message;
+import com.lyugge.pieceofshit.domain.User;
 import com.lyugge.pieceofshit.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -28,8 +30,8 @@ public class MainController {
     }
 
     @PostMapping
-    public String addMessage(@RequestParam String text, @RequestParam String tag, Model model) {
-        Message message = new Message(text, tag);
+    public String addMessage(@AuthenticationPrincipal User user, @RequestParam String text, @RequestParam String tag, Model model) {
+        Message message = new Message(text, tag, user);
         messageRepo.save(message);
         Iterable<Message> allMessages = messageRepo.findAll();
         model.addAttribute("allMessages", allMessages);

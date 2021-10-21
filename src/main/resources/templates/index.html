@@ -27,6 +27,7 @@
                 <b th:text="${message.id}"/>
                 <i th:text="${message.text}"/>
                 <i th:text="${message.tag}"/>
+                <strong th:text="${message.getAuthorName()}"/>
             </li>
         </th:block>
     </ul>
