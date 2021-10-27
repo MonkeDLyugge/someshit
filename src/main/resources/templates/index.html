@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 </head>
@@ -7,6 +8,10 @@
     <div>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign out"/>
+            <input
+                    type="hidden"
+                    th:name="${_csrf.parameterName}"
+                    th:value="${_csrf.token}" />
         </form>
     </div>
     <div>
@@ -14,12 +19,20 @@
             <input type="text" name="text" placeholder="Введите сообщения">
             <input type="text" name="tag" placeholder="Тэг">
             <button type="submit">Добавить сообщение</button>
+            <input
+                    type="hidden"
+                    th:name="${_csrf.parameterName}"
+                    th:value="${_csrf.token}" />
         </form>
     </div>
     <div>Список сообщений:</div>
     <form method="post" action="filter">
         <input type="text" name="filter">
         <button type="submit">Найти</button>
+        <input
+                type="hidden"
+                th:name="${_csrf.parameterName}"
+                th:value="${_csrf.token}" />
     </form>
     <ul>
         <th:block th:each="message, state:${allMessages}">
