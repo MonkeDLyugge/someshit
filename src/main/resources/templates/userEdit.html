@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>User  edit</h1>
+    <form action="/user" method="post">
+        <input type="text" name="userName" th:value="${user.username}">
+        <th:block th:each="role, state:${roles}">
+            <div>
+                <input type="checkbox"
+                       th:name="${role}"
+                       th:checked="${user.isInRole(role)} ? 'checked'"
+                       th:text="${role}">
+            </div>
+        </th:block>
+        <input type="hidden" name="userId" th:value="${user.id}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

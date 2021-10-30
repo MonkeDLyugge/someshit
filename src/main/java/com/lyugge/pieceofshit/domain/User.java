@@ -88,4 +88,15 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public boolean isInRole(Role role) {
+        Role someRole;
+        for (Object object: roles) {
+            someRole = (Role) object;
+            if (someRole.name().equals(role.name())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

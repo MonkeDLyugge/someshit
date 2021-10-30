@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>
+    User List
+</h1>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="user, state:${users}">
+                <tr>
+                    <td th:text="${user.username}"></td>
+                    <td>
+                        <th:block th:each="role, state:${user.roles}">
+                            <div th:text="${role}"/>
+                        </th:block>
+                    </td>
+                    <td><a th:href="@{user/{id}(id=${user.id})}">edit user</a></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

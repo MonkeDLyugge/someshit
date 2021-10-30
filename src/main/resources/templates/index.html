@@ -13,6 +13,7 @@
                     th:name="${_csrf.parameterName}"
                     th:value="${_csrf.token}" />
         </form>
+        <span><a href="/user">User List</a></span>
     </div>
     <div>
         <form method="post">
@@ -38,7 +39,7 @@
         <th:block th:each="message, state:${allMessages}">
             <li>
                 <b th:text="${message.id}"/>
-                <i th:text="${message.text}"/>
+                <i th:text="${message.text}"></i>
                 <i th:text="${message.tag}"/>
                 <strong th:text="${message.getAuthorName()}"/>
             </li>
